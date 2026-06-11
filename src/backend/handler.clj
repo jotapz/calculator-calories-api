@@ -3,8 +3,13 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
+(def transacoes (atom [
+  {:alimento "banana", :calorias 100 :typpe "ganho"}
+]))
+
 (defroutes app-routes
-  (GET "/" [] "Hello World")
+  (GET "/" [] "servidor da calculadora ta rodando hehe")
+  (GET "/extrato" [] (str @transacoes))
   (route/not-found "Not Found"))
 
 (def app
