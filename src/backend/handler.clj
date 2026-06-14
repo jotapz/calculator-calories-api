@@ -5,9 +5,9 @@
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [cheshire.core :as json]
             [clj-http.client :as client]
-            [backend.api :as api]
+            [backend.apiIgnore :as api]
             [backend.db :as db]))
-            
+
 
 (defn jsonn
   ([retorno]
@@ -19,6 +19,10 @@
   (jsonn {:erro retorno} 400))
 
 (defroutes app-routes
+
+  (DELETE "/limpar" []
+    (db/limpar)
+    (jsonn {:mensagem "Transações limpas com sucesso!"}))
 
   (POST "/usuario" requisicao
     (let [dados (:body requisicao)]

@@ -19,8 +19,6 @@
   (let [colecao-atualizada (swap! registros conj transacao)]
     (merge transacao {:id (count colecao-atualizada)})))
 
-(defn transacoes-do-tipo [tipo]
-  (filter #(= tipo (:tipo %)) (transacoes)))
 
 (defn transacoes-por-periodo [data-inicio data-fim]
   (filter (fn [t]
